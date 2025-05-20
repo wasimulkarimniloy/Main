@@ -1,6 +1,4 @@
-Thanks for downloading this template!
+WASIMUL KARIM NILOY
 
-Template Name: iPortfolio
-Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
+
+📧E-mail: info@wasimulkarimniloy.top 
