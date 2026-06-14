@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NILOY // Mobile Games Doctor & Portfolio</title>
+    <meta name="description" content="Immerse yourself in NILOY's gaming console, featuring UIDs, custom glassmorphism, dynamic animations, and game token shop.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ========== INTRO / SPLASH SCREEN ========== -->
+    <div id="intro-overlay" class="intro-overlay">
+        <canvas id="intro-canvas"></canvas>
+        <div class="intro-text-layer">
+            <div class="intro-logo">
+                <span class="intro-logo-main">NIL</span><span class="intro-logo-accent">OY</span>
+            </div>
+            <div class="intro-tagline font-mono">INITIALIZING COMBAT SYSTEMS...</div>
+            <div class="intro-progress-bar">
+                <div class="intro-progress-fill" id="intro-progress"></div>
+            </div>
+        </div>
+        <div class="muzzle-flash-overlay" id="muzzle-flash"></div>
+    </div>
+
+    <!-- ========== ANIME KILL OVERLAY (appears every 2s) ========== -->
+    <div id="anime-kill-overlay" class="anime-kill-overlay hidden-kill">
+        <div class="kill-scope">
+            <svg viewBox="0 0 200 200" class="scope-svg">
+                <circle cx="100" cy="100" r="90" stroke="rgba(255,0,0,0.6)" stroke-width="1.5" fill="none"/>
+                <circle cx="100" cy="100" r="60" stroke="rgba(255,0,0,0.4)" stroke-width="1" fill="none"/>
+                <line x1="100" y1="0" x2="100" y2="80" stroke="rgba(255,0,0,0.8)" stroke-width="1.5"/>
+                <line x1="100" y1="120" x2="100" y2="200" stroke="rgba(255,0,0,0.8)" stroke-width="1.5"/>
+                <line x1="0" y1="100" x2="80" y2="100" stroke="rgba(255,0,0,0.8)" stroke-width="1.5"/>
+                <line x1="120" y1="100" x2="200" y2="100" stroke="rgba(255,0,0,0.8)" stroke-width="1.5"/>
+                <circle cx="100" cy="100" r="4" fill="red"/>
+            </svg>
+        </div>
+        <div class="kill-slash-lines">
+            <div class="slash-line slash-1"></div>
+            <div class="slash-line slash-2"></div>
+        </div>
+        <div class="kill-text-box">
+            <span class="kill-label font-mono">ELIMINATED</span>
+            <span class="kill-victim font-mono" id="kill-victim-name">ENEMY_X</span>
+        </div>
+        <div class="kill-flash"></div>
+    </div>
+
+    <!-- ========== MAIN SITE ========== -->
+    <div id="main-site" class="main-site-hidden">
+        <canvas id="three-canvas"></canvas>
+        <div class="custom-cursor cursor-outer"></div>
+        <div class="custom-cursor cursor-inner"></div>
+
+        <div class="app-container">
+            <header class="glass-header">
+                <div class="logo-container">
+                    <div class="logo-glow"></div>
+                    <span class="logo-text">NIL<span class="accent-text">OY</span></span>
+                </div>
+                
+                <nav class="nav-links">
+                    <a href="#home" class="nav-item active" data-tab="hero-tab">
+                        <i data-lucide="home"></i> <span>Home</span>
+                    </a>
+                    <a href="#about" class="nav-item" data-tab="about-tab">
+                        <i data-lucide="user"></i> <span>About</span>
+                    </a>
+                    <a href="#console" class="nav-item" data-tab="dashboard-tab">
+                        <i data-lucide="terminal"></i> <span>Console</span>
+                    </a>
+                    <a href="#shop" class="nav-item" data-tab="shop-tab">
+                        <i data-lucide="shopping-cart"></i> <span>Token Shop</span>
+                    </a>
+                    <a href="#contact" class="nav-item" data-tab="contact-tab">
+                        <i data-lucide="mail"></i> <span>Contact</span>
+                    </a>
+                </nav>
+
+                <div class="user-profile">
+                    <!-- Real Brand SVG Social Icons -->
+                    <div class="header-socials">
+                        <a href="https://t.me/crypto_orator" target="_blank" class="social-icon-btn" title="Telegram">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        </a>
+                        <a href="https://x.com/crypto_orator" target="_blank" class="social-icon-btn" title="X (Twitter)">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+                        </a>
+                        <a href="https://discord.com/users/crypto_orator" target="_blank" class="social-icon-btn" title="Discord">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+                        </a>
+                    </div>
+                    <div class="profile-card glass-panel-sm">
+                        <img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=Niloy" alt="Avatar" class="avatar">
+                        <div class="profile-info">
+                            <span class="username">NILOY</span>
+                            <span class="rank font-mono text-cyan">GAME DOCTOR</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <!-- TAB 1: HERO -->
+                <section id="hero-tab" class="tab-pane active">
+                    <div class="hero-layout">
+                        <div class="hero-text-block">
+                            <div class="badge glass-panel-sm font-mono"><i data-lucide="shield"></i> VERIFIED MOBILE GAMER // BD</div>
+                            <h1 class="hero-title">NILOY // THE<br><span class="gradient-text text-liquid">GAME DOCTOR</span></h1>
+                            <div class="typewriter-container font-mono text-cyan"><span>// </span><span id="typewriter-text" class="text-glow"></span><span class="cursor-blink">|</span></div>
+                            <p class="hero-description">Passionate Bangladeshi mobile gamer, strategist, and content creator. Specializing in competitive gameplay optimization, real-time statistics, and direct gaming token distributions.</p>
+                            <div class="hero-actions">
+                                <button class="btn btn-primary btn-glow" id="cta-console"><i data-lucide="terminal"></i> OPEN CONSOLE</button>
+                                <button class="btn btn-secondary" id="cta-shop"><i data-lucide="shopping-cart"></i> BUY TOKENS</button>
+                            </div>
+                        </div>
+                        <div class="side-panel glass-panel">
+                            <div class="panel-header"><i data-lucide="activity"></i><span class="font-mono">PORTFOLIO DATA</span></div>
+                            <div class="stats-grid">
+                                <div class="stat-card"><span class="stat-label">HAPPY CLIENTS</span><span class="stat-value text-cyan font-mono">57+</span></div>
+                                <div class="stat-card"><span class="stat-label">COMPLETED PROJECTS</span><span class="stat-value text-magenta font-mono">65+</span></div>
+                                <div class="stat-card"><span class="stat-label">SUPPORT HOURS</span><span class="stat-value text-violet font-mono">145h</span></div>
+                                <div class="stat-card"><span class="stat-label">REGION</span><span class="stat-value text-green font-mono">BD</span></div>
+                            </div>
+                            <div class="event-ticker glass-panel-sm"><span class="ticker-dot pulsing"></span><p class="ticker-text font-mono text-green">STATUS: ACCEPTING TOKEN ORDERS</p></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 2: ABOUT -->
+                <section id="about-tab" class="tab-pane">
+                    <div class="section-header"><h2>BIOGRAPHY & <span class="gradient-text">XP SKILLS</span></h2><p>Details about Niloy's gaming background, statistics, and game mastery levels.</p></div>
+                    <div class="about-layout">
+                        <div class="glass-panel bio-card">
+                            <h3 class="card-title text-cyan"><i data-lucide="user-check"></i> WHO IS NILOY?</h3>
+                            <p class="bio-text">Niloy is a passionate Bangladeshi mobile gamer who specializes in competitive and casual gameplay in top mobile titles such as PUBG Mobile, Call of Duty Mobile, and Free Fire. He is well-known in the gaming community for his skill, strategy, and love for mobile gaming.</p>
+                            <blockquote class="bio-quote font-mono">"I'm a passionate mobile gamer and content creator, specialized in PUBG & Call of Duty Mobile. I analyze tactics, optimize gameplay, and help others dominate the leaderboard."</blockquote>
+                            <div class="details-list">
+                                <div class="detail-item"><span class="detail-lbl font-mono">BIRTHDAY:</span><span class="detail-val">10 September 2006</span></div>
+                                <div class="detail-item"><span class="detail-lbl font-mono">LOCATION:</span><span class="detail-val">BANGLADESH</span></div>
+                                <div class="detail-item"><span class="detail-lbl font-mono">EMAIL:</span><a href="mailto:info@niloybd.com" class="detail-val text-cyan">info@niloybd.com</a></div>
+                                <div class="detail-item"><span class="detail-lbl font-mono">WEBSITE:</span><span class="detail-val">www.niloybd.com</span></div>
+                            </div>
+                        </div>
+                        <div class="glass-panel skills-card">
+                            <h3 class="card-title text-magenta"><i data-lucide="award"></i> GAME MASTERY LEVELS</h3>
+                            <div class="skills-list">
+                                <div class="skill-item"><div class="skill-info font-mono"><span>CALL OF DUTY MOBILE</span><span class="text-cyan">100% XP</span></div><div class="xp-bar-bg glass-panel-sm"><div class="xp-bar-fill" style="width:100%;--bar-color:var(--neon-cyan);"><div class="xp-glow"></div></div></div></div>
+                                <div class="skill-item"><div class="skill-info font-mono"><span>PUBG MOBILE</span><span class="text-magenta">90% XP</span></div><div class="xp-bar-bg glass-panel-sm"><div class="xp-bar-fill" style="width:90%;--bar-color:var(--neon-magenta);"><div class="xp-glow"></div></div></div></div>
+                                <div class="skill-item"><div class="skill-info font-mono"><span>GENSHIN IMPACT</span><span class="text-violet">80% XP</span></div><div class="xp-bar-bg glass-panel-sm"><div class="xp-bar-fill" style="width:80%;--bar-color:var(--neon-violet);"><div class="xp-glow"></div></div></div></div>
+                                <div class="skill-item"><div class="skill-info font-mono"><span>FREE FIRE</span><span class="text-green">75% XP</span></div><div class="xp-bar-bg glass-panel-sm"><div class="xp-bar-fill" style="width:75%;--bar-color:var(--neon-green);"><div class="xp-glow"></div></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 3: CONSOLE -->
+                <section id="dashboard-tab" class="tab-pane">
+                    <div class="section-header"><h2>GAMER CONSOLE // <span class="gradient-text">UID REGISTRY</span></h2><p>Copy verified player IDs, monitor live pings, or trigger matchmaking tests.</p></div>
+                    <div class="uid-grid-section">
+                        <h3 class="grid-title font-mono"><i data-lucide="shield-check" class="text-cyan"></i> VERIFIED GAME UIDS</h3>
+                        <div class="uids-deck">
+                            <div class="uid-card glass-panel" data-tilt data-uid="52280046754"><div class="card-glow" style="--glow-color:var(--cyan-glow);"></div><div class="uid-header"><i data-lucide="gamepad-2" class="uid-game-icon text-cyan"></i><span class="game-name font-mono">PUBG MOBILE</span></div><div class="uid-value-box"><span class="uid-num font-mono">52280046754</span><button class="btn-copy-uid" title="Copy ID"><i data-lucide="copy"></i></button></div></div>
+                            <div class="uid-card glass-panel" data-tilt data-uid="7501403367808106499"><div class="card-glow" style="--glow-color:var(--magenta-glow);"></div><div class="uid-header"><i data-lucide="crosshair" class="uid-game-icon text-magenta"></i><span class="game-name font-mono">COD MOBILE</span></div><div class="uid-value-box"><span class="uid-num font-mono">7501403367808106499</span><button class="btn-copy-uid" title="Copy ID"><i data-lucide="copy"></i></button></div></div>
+                            <div class="uid-card glass-panel" data-tilt data-uid="584943155717"><div class="card-glow" style="--glow-color:var(--violet-glow);"></div><div class="uid-header"><i data-lucide="swords" class="uid-game-icon text-violet"></i><span class="game-name font-mono">BLOODSTRIKE</span></div><div class="uid-value-box"><span class="uid-num font-mono">584943155717</span><button class="btn-copy-uid" title="Copy ID"><i data-lucide="copy"></i></button></div></div>
+                            <div class="uid-card glass-panel" data-tilt data-uid="11419186189"><div class="card-glow" style="--glow-color:var(--green-glow);"></div><div class="uid-header"><i data-lucide="flame" class="uid-game-icon text-green"></i><span class="game-name font-mono">FREE FIRE</span></div><div class="uid-value-box"><span class="uid-num font-mono">11419186189</span><button class="btn-copy-uid" title="Copy ID"><i data-lucide="copy"></i></button></div></div>
+                        </div>
+                    </div>
+                    <div class="dashboard-layout">
+                        <div class="dashboard-col">
+                            <div class="glass-panel matchmaking-card">
+                                <div class="panel-header"><i data-lucide="shield-alert"></i><span class="font-mono">HYPERSPACE MATCHMAKING</span></div>
+                                <div class="matchmaking-status-box">
+                                    <div class="ping-chart-container"><div class="ping-header font-mono"><span>SIGNAL STABILITY</span><span id="ping-readout">Pinging...</span></div><canvas id="ping-canvas" width="300" height="70"></canvas></div>
+                                    <div class="matchmaking-controls"><div class="selector-group"><label for="region-select" class="font-mono">GATEWAY SECTOR</label><select id="region-select" class="glass-select font-mono"><option value="na-east">NA-EAST [SOL-1]</option><option value="eu-west">EU-WEST [SOL-2]</option><option value="asia-pac">ASIA-PACIFIC [SOL-3]</option></select></div><button class="btn btn-primary btn-block btn-liquid-glow" id="matchmaker-btn"><span class="btn-text">INITIATE CONNECTION</span></button></div>
+                                    <div class="queue-status-overlay hidden" id="queue-overlay"><div class="liquid-loader"><div class="liquid-blob-loader"></div></div><p class="status-msg font-mono">SCANNING QUANTUM CHANNELS...</p><div class="timer font-mono" id="queue-timer">00:00</div><button class="btn btn-danger-sm btn-glow" id="cancel-queue-btn">ABORT</button></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dashboard-col flex-rows">
+                            <div class="glass-panel profile-stats-card">
+                                <div class="panel-header"><i data-lucide="volume-2"></i><span class="font-mono">INTERACTIVES</span></div>
+                                <div class="stats-overview"><p class="stats-intro font-mono text-cyan">SOUND FX GENERATOR</p><p class="stats-desc">This panel utilizes the browser's Web Audio API to synthesize micro sci-fi interaction tones in real-time.</p>
+                                    <div class="mini-widgets">
+                                        <div class="glass-panel mini-card text-center clickable" id="notify-card"><i data-lucide="bell" class="mini-icon text-cyan"></i><h4 class="font-mono">SYSTEM ALERTS</h4><span class="badge-number font-mono">3</span></div>
+                                        <div class="glass-panel mini-card text-center clickable" id="audio-toggle"><i data-lucide="volume-2" id="audio-icon" class="mini-icon text-magenta"></i><h4 class="font-mono" id="audio-status-label">SOUND TONES</h4><span class="status-lbl font-mono text-green">ON</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 4: TOKEN SHOP -->
+                <section id="shop-tab" class="tab-pane">
+                    <div class="section-header"><h2>GAMING <span class="gradient-text">TOKEN STORE</span></h2><p>Purchase official gaming currencies (UC, CP, Diamonds) securely at discounted rates.</p></div>
+                    <div class="shop-overview-box glass-panel-sm text-center font-mono"><i data-lucide="info" class="text-cyan"></i><span>Secure Top-up via ID: Enter UID at checkout. Verification takes under 10 minutes.</span></div>
+                    <div class="shop-grid">
+                        <div class="shop-card glass-panel" data-tilt><div class="card-glow" style="--glow-color:var(--cyan-glow);"></div><div class="shop-visual text-cyan"><i data-lucide="gamepad-2" class="shop-icon"></i><div class="shine"></div></div><div class="shop-details"><span class="game-badge font-mono text-cyan">PUBG MOBILE</span><h3>UNKNOWN CASH (UC)</h3><p>Discounted UC top-up. Select package and enter player ID for direct in-game delivery.</p><div class="shop-action-box"><button class="btn btn-secondary btn-block order-btn" data-game="PUBG Mobile" data-package="PUBG UC Top-up"><i data-lucide="shopping-cart"></i> SELECT PACKAGE</button></div></div></div>
+                        <div class="shop-card glass-panel" data-tilt><div class="card-glow" style="--glow-color:var(--magenta-glow);"></div><div class="shop-visual text-magenta"><i data-lucide="crosshair" class="shop-icon"></i><div class="shine"></div></div><div class="shop-details"><span class="game-badge font-mono text-magenta">COD MOBILE</span><h3>COD POINTS (CP)</h3><p>Direct CP delivery to your game account. Instant verification and low-rate processing.</p><div class="shop-action-box"><button class="btn btn-secondary btn-block order-btn" data-game="COD Mobile" data-package="CODM CP Top-up"><i data-lucide="shopping-cart"></i> SELECT PACKAGE</button></div></div></div>
+                        <div class="shop-card glass-panel" data-tilt><div class="card-glow" style="--glow-color:var(--green-glow);"></div><div class="shop-visual text-green"><i data-lucide="flame" class="shop-icon"></i><div class="shine"></div></div><div class="shop-details"><span class="game-badge font-mono text-green">FREE FIRE</span><h3>DIAMOND SHARDS</h3><p>Super-fast Diamond top-up via player login or player ID. Safest and lowest pricing in BD.</p><div class="shop-action-box"><button class="btn btn-secondary btn-block order-btn" data-game="Free Fire" data-package="Free Fire Diamonds Top-up"><i data-lucide="shopping-cart"></i> SELECT PACKAGE</button></div></div></div>
+                    </div>
+                </section>
+
+                <!-- TAB 5: CONTACT -->
+                <section id="contact-tab" class="tab-pane">
+                    <div class="section-header"><h2>ESTABLISH <span class="gradient-text">TRANSMISSION</span></h2><p>Send a direct enquiry or request token package details below.</p></div>
+                    <div class="contact-layout">
+                        <div class="glass-panel contact-info-card">
+                            <h3 class="card-title text-cyan"><i data-lucide="globe"></i> NILOY HEADQUARTERS</h3>
+                            <p class="contact-desc">Reach out for token deals, gaming partnerships, or custom settings calibrations.</p>
+                            <div class="info-items-group">
+                                <div class="contact-info-item"><i data-lucide="map-pin" class="info-icon text-cyan"></i><div><span class="info-label font-mono">ADDRESS</span><span class="info-val">BANGLADESH</span></div></div>
+                                <div class="contact-info-item"><i data-lucide="mail" class="info-icon text-magenta"></i><div><span class="info-label font-mono">EMAIL</span><a href="mailto:info@niloybd.com" class="info-val text-magenta">info@niloybd.com</a></div></div>
+                            </div>
+                            <div class="social-links-footer font-mono">
+                                <span class="text-glow">// SOCIAL FREQ:</span>
+                                <div class="social-links-row">
+                                    <a href="https://t.me/crypto_orator" target="_blank" class="social-pill">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                                        TELEGRAM
+                                    </a>
+                                    <a href="https://x.com/crypto_orator" target="_blank" class="social-pill">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+                                        TWITTER / X
+                                    </a>
+                                    <a href="https://discord.com/users/crypto_orator" target="_blank" class="social-pill">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+                                        DISCORD
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-panel contact-form-card">
+                            <h3 class="card-title text-magenta"><i data-lucide="terminal"></i> SECURE MESSAGE</h3>
+                            <form id="contact-form" class="terminal-form">
+                                <div class="form-row"><div class="form-group"><label for="form-name" class="font-mono">SENDER_NAME</label><input type="text" id="form-name" required placeholder="Gamer Tag / Name" class="glass-input"></div><div class="form-group"><label for="form-email" class="font-mono">SENDER_EMAIL</label><input type="email" id="form-email" required placeholder="name@email.com" class="glass-input"></div></div>
+                                <div class="form-row"><div class="form-group"><label for="form-subject" class="font-mono">TRANSMISSION_SUBJECT</label><input type="text" id="form-subject" required placeholder="Subject / Package Enq." class="glass-input"></div><div class="form-group"><label for="form-uid" class="font-mono">PLAYER_GAME_UID (OPTIONAL)</label><input type="text" id="form-uid" placeholder="Your Game ID" class="glass-input"></div></div>
+                                <div class="form-group"><label for="form-message" class="font-mono">ENCRYPTED_MESSAGE</label><textarea id="form-message" required rows="5" placeholder="Write message here..." class="glass-input glass-textarea"></textarea></div>
+                                <button type="submit" class="btn btn-primary btn-block btn-glow"><i data-lucide="send"></i> SEND TRANSMISSION</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <div class="notification-container" id="notif-box"></div>
+            <footer class="glass-footer">
+                <p class="footer-copy font-mono">&copy; 2026 NILOY CO. ALL SYSTEMS SYNCHRONIZED.</p>
+                <div class="footer-socials">
+                    <a href="https://t.me/crypto_orator" target="_blank" class="footer-social-btn" title="Telegram"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+                    <a href="https://x.com/crypto_orator" target="_blank" class="footer-social-btn" title="X"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+                    <a href="https://discord.com/users/crypto_orator" target="_blank" class="footer-social-btn" title="Discord"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg></a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="intro-scene.js"></script>
+    <script src="three-scene.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
